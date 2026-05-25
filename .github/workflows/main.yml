@@ -75,18 +75,12 @@ jobs:
         with:
           name: coverage-report
 
-      - name: SonarCloud Scan
+      - name: SonarCloud Scan + Quality Gate
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      - name: Quality Gate
-        uses: SonarSource/sonarqube-quality-gate-action@master
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_SCANNER_OPTS: "-Dsonar.qualitygate.wait=true"
 
   # ─────────────────────────────────────────────
   # STAGE 3 : Build & Push Docker Hub
