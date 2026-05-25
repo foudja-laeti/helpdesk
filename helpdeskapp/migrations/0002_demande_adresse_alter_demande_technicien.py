@@ -14,11 +14,22 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='demande',
             name='adresse',
-            field=models.CharField(blank=True, help_text='Adresse complète (ville, quartier)', max_length=300, null=True),
+            field=models.CharField(
+                blank=True,
+                help_text='Adresse complète (ville, quartier)',
+                max_length=300,
+                null=True),
         ),
         migrations.AlterField(
             model_name='demande',
             name='technicien',
-            field=models.ForeignKey(blank=True, limit_choices_to={'role': 'technicien'}, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='technicien_demandes', to='helpdeskapp.utilisateur'),
+            field=models.ForeignKey(
+                blank=True,
+                limit_choices_to={
+                    'role': 'technicien'},
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name='technicien_demandes',
+                to='helpdeskapp.utilisateur'),
         ),
     ]

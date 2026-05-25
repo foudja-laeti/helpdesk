@@ -1,19 +1,19 @@
 from django import forms
-from .models import *
+from .models import Utilisateur, Demande, Domaine
 # make_password n'est plus nécessaire ici car la logique de hachage est dans la vue
-# from django.contrib.auth.hashers import make_password 
+# from django.contrib.auth.hashers import make_password
 
 
 class DomaineForm(forms.ModelForm):
     class Meta:
         model = Domaine
-        fields =['intitule', 'description']
+        fields = ['intitule', 'description']
         widgets = {
-            'intitule': forms.TextInput(attrs= {
+            'intitule': forms.TextInput(attrs={
                 'class': 'input w-full',
                 'placeholder': 'Entrez le domaine'
             }),
-            'description': forms.Textarea(attrs= {
+            'description': forms.Textarea(attrs={
                 'class': 'textarea w-full h-24',
                 'placeholder': 'Decrire en quelques mots le domaine'
 
@@ -24,7 +24,14 @@ class DomaineForm(forms.ModelForm):
 class UtilisateurForm(forms.ModelForm):
     class Meta:
         model = Utilisateur
-        fields = ['nom', 'prenom', 'telephone', 'adresse', 'email', 'password', 'role']
+        fields = [
+            'nom',
+            'prenom',
+            'telephone',
+            'adresse',
+            'email',
+            'password',
+            'role']
         widgets = {
             'nom': forms.TextInput(attrs={
                 'class': 'input w-full',
@@ -54,7 +61,7 @@ class UtilisateurForm(forms.ModelForm):
                 'class': 'select w-full'
             })
         }
-    
+
     # La méthode clean_password est retirée ici pour éviter le double hachage.
     # Le hachage est géré dans views.py lors de la sauvegarde.
 
@@ -66,8 +73,15 @@ class DemandeForm(forms.ModelForm):
     class Meta:
         model = Demande
         # ⭐ Ajout du champ 'adresse'
-        fields = ['client', 'technicien', 'domaine', 'intitule', 'description', 'statut', 'adresse']
-        
+        fields = [
+            'client',
+            'technicien',
+            'domaine',
+            'intitule',
+            'description',
+            'statut',
+            'adresse']
+
         widgets = {
             'client': forms.Select(attrs={
                 'class': 'select w-full'
@@ -86,7 +100,7 @@ class DemandeForm(forms.ModelForm):
                 'placeholder': 'Entrez le titre de la demande'
             }),
             'description': forms.Textarea(attrs={
-                'class': 'textarea w-full h-24', 
+                'class': 'textarea w-full h-24',
                 'placeholder': 'Décrivez la requête en détail'
             }),
             # ⭐ Widget pour le champ adresse
@@ -95,6 +109,7 @@ class DemandeForm(forms.ModelForm):
                 'placeholder': 'Ex: Douala, Akwa - Rue de la liberté'
             }),
         }
+
 
 class LoginForm(forms.Form):
     """

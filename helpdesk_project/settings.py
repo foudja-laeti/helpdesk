@@ -129,7 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Config de la journalisation
 
-import os
 
 # Création du dossier des logs
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
@@ -139,7 +138,7 @@ if not os.path.exists(LOGS_DIR):
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    
+
     # Définition des formatteurs
     'formatters': {
         'verbose': {
@@ -156,7 +155,7 @@ LOGGING = {
             'datefmt': '%y-%m-%d %H:%M:%S',
         },
     },
-    
+
     # Définition des gestionnaires
     'handlers': {
         # Fichier pour tous les logs
@@ -173,7 +172,7 @@ LOGGING = {
             'formatter': 'simple',
         },
     },
-    
+
     # Définition des loggers
     'loggers': {
         #    'django': {
@@ -193,11 +192,10 @@ LOGGING = {
         #     'propagate': True,
         # },
     },
-    
+
     # logger racine pour capturer tous les logs
     # 'root': {
     #     'handlers': ['file', 'console'],
     #     'level': 'DEBUG',
     # }
 }  # ← FERMETURE DU DICTIONNAIRE LOGGING
-
