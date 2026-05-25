@@ -1,0 +1,150 @@
+INFO 2025-12-09 02:47:00,893 views utilisateur connecté: foudja (ID: 2), (Role: client)
+WARNING 2026-01-23 11:37:05,462 views echec de connexion pour l'email: foudjalaeti@gmail.com
+INFO 2026-01-23 11:38:00,612 views utilisateur connecté: foudja (ID: 2), (Role: client)
+WARNING 2026-01-23 11:39:19,185 views echec de connexion pour l'email: lara@gmail.com
+WARNING 2026-01-23 12:04:04,642 views echec de connexion pour l'email: kkbi@gmail.com
+WARNING 2026-01-23 12:04:19,875 views echec de connexion pour l'email: kkbi@gmail.com
+INFO 2026-01-23 12:05:17,656 views utilisateur connecté: kakabi (ID: 7), (Role: administrateur)
+INFO 2026-01-23 12:05:19,842 views utilisateur connecté: kakabi (ID: 7), (Role: administrateur)
+INFO 2026-01-23 12:06:08,615 views utilisateur connecté: laforteza (ID: 11), (Role: technicien)
+INFO 2026-01-23 12:09:58,817 views utilisateur connecté: laforteza (ID: 11), (Role: technicien)
+WARNING 2026-01-23 12:12:34,544 views Erreur API météo: 401
+WARNING 2026-01-23 12:14:23,144 views Erreur API météo: 401
+WARNING 2026-01-23 12:14:44,873 views Erreur API météo: 401
+WARNING 2026-01-23 12:16:04,845 views Erreur API météo: 401
+WARNING 2026-01-23 12:17:00,069 views Erreur API météo: 401
+WARNING 2026-01-23 12:17:09,839 views Erreur API météo: 401
+WARNING 2026-01-23 12:17:30,042 views Erreur API météo: 401
+WARNING 2026-01-23 12:18:00,741 views Erreur API météo: 401
+WARNING 2026-01-23 12:19:24,520 views Erreur API météo: 401
+WARNING 2026-01-23 12:22:21,966 views Erreur API météo: 401
+WARNING 2026-01-23 12:27:28,653 views Erreur API météo: 401
+INFO 2026-01-23 12:44:53,731 views utilisateur connecté: laforteza (ID: 11), (Role: technicien)
+WARNING 2026-01-23 12:44:54,436 views Erreur API météo: 401
+WARNING 2026-01-23 12:49:15,078 views Erreur API météo: 401
+WARNING 2026-01-23 12:50:58,735 views Erreur API météo: 401
+WARNING 2026-01-23 12:51:03,514 views Erreur API météo: 401
+WARNING 2026-01-23 12:51:20,850 views Erreur API météo: 401
+WARNING 2026-01-23 12:53:25,772 views Erreur API météo: 401
+WARNING 2026-01-23 12:53:58,747 views API météo erreur 401 - Fallback données factices
+WARNING 2026-01-23 23:08:35,718 views Erreur météo: HTTPConnectionPool(host='api.openweathermap.org', port=80): Max retries exceeded with url: /data/2.5/weather?q=Douala&appid=fca31f7d172c3f1604a1e69c97a667a0&units=metric&lang=fr (Caused by NameResolutionError("HTTPConnection(host='api.openweathermap.org', port=80): Failed to resolve 'api.openweathermap.org' ([Errno 11001] getaddrinfo failed)")) - Fallback données factices
+WARNING 2026-01-23 23:11:54,187 views Erreur météo: HTTPConnectionPool(host='api.openweathermap.org', port=80): Max retries exceeded with url: /data/2.5/weather?q=Douala&appid=fca31f7d172c3f1604a1e69c97a667a0&units=metric&lang=fr (Caused by NameResolutionError("HTTPConnection(host='api.openweathermap.org', port=80): Failed to resolve 'api.openweathermap.org' ([Errno 11001] getaddrinfo failed)")) - Fallback données factices
+WARNING 2026-01-23 23:16:35,620 views echec de connexion pour l'email: foudjalaeti@gmail.com
+INFO 2026-01-23 23:16:50,747 views utilisateur connecté: foudja (ID: 2), (Role: client)
+INFO 2026-01-23 23:16:51,449 views Données météo API récupérées pour Douala
+INFO 2026-01-23 23:17:25,001 views utilisateur connecté: kakabi (ID: 7), (Role: administrateur)
+INFO 2026-01-23 23:26:34,638 views Données météo API récupérées pour Douala
+INFO 2026-01-23 23:35:25,234 views Données météo API récupérées pour Douala
+INFO 2026-01-23 23:38:29,398 views Données météo récupérées pour Douala
+INFO 2026-01-23 23:45:43,574 views utilisateur connecté: foudja (ID: 2), (Role: client)
+INFO 2026-01-23 23:45:44,339 views Données météo récupérées pour Douala
+INFO 2026-01-23 23:58:07,344 views utilisateur connecté: laforteza (ID: 11), (Role: technicien)
+INFO 2026-01-23 23:58:07,951 views Données météo récupérées pour Douala
+INFO 2026-01-23 23:58:11,020 views Données météo récupérées pour Douala
+INFO 2026-01-23 23:58:11,586 views Données météo récupérées pour Douala
+INFO 2026-01-23 23:58:30,729 views utilisateur connecté: foudja (ID: 2), (Role: client)
+INFO 2026-01-23 23:58:31,348 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:00:51,032 views Nouvelle demande ajoutée par l'utilisateur ID: 2, Demande ID: 5
+INFO 2026-01-24 00:00:51,660 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:00:52,228 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:00:52,783 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:00:53,323 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:00:55,659 views Nouvelle demande ajoutée par l'utilisateur ID: 2, Demande ID: 6
+INFO 2026-01-24 00:00:56,268 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:00:56,861 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:00:57,438 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:00:57,990 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:00:58,564 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:02:36,307 views Nouvelle demande ajoutée par l'utilisateur ID: 2, Demande ID: 7
+INFO 2026-01-24 00:02:36,947 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:02:37,526 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:02:38,069 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:02:38,630 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:02:39,184 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:02:39,726 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:00,042 views utilisateur connecté: laforteza (ID: 11), (Role: technicien)
+INFO 2026-01-24 00:03:00,666 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:03,477 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:04,091 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:04,651 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:05,219 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:05,670 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:05,767 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:06,222 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:06,328 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:06,791 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:07,371 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:07,747 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:07,944 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:08,311 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:08,504 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:08,906 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:09,135 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:09,502 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:09,702 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:10,110 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:10,256 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:10,312 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:10,703 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:10,818 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:10,891 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:11,157 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:11,393 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:11,470 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:11,712 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:11,971 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:12,035 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:12,286 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:12,610 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:12,714 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:12,868 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:13,357 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:13,497 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:13,919 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:13,930 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:14,078 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:14,538 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:15,112 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:15,683 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:25,314 views Données météo récupérées pour Garoua
+INFO 2026-01-24 00:03:25,866 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:26,422 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:26,969 views Données météo récupérées pour Yaounde
+INFO 2026-01-24 00:03:27,538 views Données météo récupérées pour Douala
+INFO 2026-01-24 00:03:28,106 views Données météo récupérées pour Douala
+INFO 2026-01-24 01:43:23,240 views Données météo API récupérées pour Garoua
+INFO 2026-01-24 01:43:23,811 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:24,356 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:24,914 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:25,473 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:43:26,033 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:43:42,961 views Données météo API récupérées pour seoul
+INFO 2026-01-24 01:43:43,502 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:44,236 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:44,801 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:43:45,354 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:43:45,918 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:45:40,590 views Données météo API récupérées pour seoul
+INFO 2026-01-24 01:45:41,154 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:45:42,017 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:45:42,601 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:45:43,217 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:45:43,779 views Données météo API récupérées pour Douala
+WARNING 2026-01-24 01:46:06,599 views API météo erreur 404 - Fallback données factices
+INFO 2026-01-24 01:46:07,155 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:07,924 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:08,511 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:09,051 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:46:09,610 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:46:23,338 views Données météo API récupérées pour los
+INFO 2026-01-24 01:46:23,909 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:24,456 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:25,022 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:25,633 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:46:26,185 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:46:36,282 views Données météo API récupérées pour toronto
+INFO 2026-01-24 01:46:36,931 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:37,501 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:38,079 views Données météo API récupérées pour Yaounde
+INFO 2026-01-24 01:46:38,636 views Données météo API récupérées pour Douala
+INFO 2026-01-24 01:46:39,175 views Données météo API récupérées pour Douala

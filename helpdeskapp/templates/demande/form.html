@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if demande %}
+Modifier demande
+{% else %}
+Ajouter une demande
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mb-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+        {% if demande %}
+        Modifier la demande
+        {% else %}
+        Ajouter une demande
+        {% endif %}
+    </h1>
+    <a href="{% url 'demande:list_demandes' %}" class="btn btn-primary">
+        <i class="fa fa-list"></i>
+        Liste des demandes
+    </a>
+</div>
+
+<form method="POST" action="{% if demande %}{% url 'demande:update_demande' demande.id %}{% else %}{% url 'demande:add_demande' %}{% endif %}" class="space-y-4">
+    {% csrf_token %}
+    
+    <!-- Client -->
+    <div class="form-control">
+        <label for="{{ form.client.id_for_label }}" class="label">
+            <span class="label-text">{{ form.client.label }}</span>
+        </label>
+        {{ form.client }}
+        {% if form.client.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.client.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <!-- Technicien -->
+    <div class="form-control">
+        <label for="{{ form.technicien.id_for_label }}" class="label">
+            <span class="label-text">{{ form.technicien.label }}</span>
+        </label>
+        {{ form.technicien }}
+        {% if form.technicien.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.technicien.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <!-- Domaine -->
+    <div class="form-control">
+        <label for="{{ form.domaine.id_for_label }}" class="label">
+            <span class="label-text">{{ form.domaine.label }}</span>
+        </label>
+        {{ form.domaine }}
+        {% if form.domaine.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.domaine.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <!-- Intitulé -->
+    <div class="form-control">
+        <label for="{{ form.intitule.id_for_label }}" class="label">
+            <span class="label-text">{{ form.intitule.label }}</span>
+        </label>
+        {{ form.intitule }}
+        {% if form.intitule.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.intitule.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <!-- Description -->
+    <div class="form-control">
+        <label for="{{ form.description.id_for_label }}" class="label">
+            <span class="label-text">{{ form.description.label }}</span>
+        </label>
+        {{ form.description }}
+        {% if form.description.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.description.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <!-- ⭐ NOUVEAU CHAMP ADRESSE -->
+    <div class="form-control">
+        <label for="{{ form.adresse.id_for_label }}" class="label">
+            <span class="label-text">Adresse d'intervention</span>
+        </label>
+        {{ form.adresse }}
+        {% if form.adresse.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.adresse.errors }}</span>
+            </label>
+        {% endif %}
+        <label class="label">
+            <span class="label-text-alt text-gray-500">
+                <i class="fa fa-info-circle"></i> 
+                Indiquez la ville et le quartier pour afficher la météo locale (ex: Douala, Akwa)
+            </span>
+        </label>
+    </div>
+
+    <!-- Statut -->
+    <div class="form-control">
+        <label for="{{ form.statut.id_for_label }}" class="label">
+            <span class="label-text">{{ form.statut.label }}</span>
+        </label>
+        {{ form.statut }}
+        {% if form.statut.errors %}
+            <label class="label">
+                <span class="label-text-alt text-red-600">{{ form.statut.errors }}</span>
+            </label>
+        {% endif %}
+    </div>
+
+    <div class="flex justify-end">
+        <button type="submit" class="btn btn-primary">
+            {% if demande %}
+            Mettre à jour
+            {% else %}
+            Enregistrer
+            {% endif %}
+        </button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{%block title %}
+Liste des Domaines
+{% endblock %}
+
+{% block content %}
+<div class="w-full bg-base-200">
+    <div class="mb-4 flex justify-between items-center">
+        <h1 class="text-2x1 font-bold">Liste des domaines</h1>
+        <a href="{%url 'domaine:add_domaines' %}" class="btn btn-primary">
+            <i class="fa fa-circle-plus"></i>
+            Ajouter un domaine
+        </a>
+    </div> 
+
+    <div class="space-y-4 w-full">
+        {% for domaine in domaines %}
+        <div class="p-4 bg-base-100 rounded-lg w-full flex justify-between items-center">
+            <div class="space-y-2">
+                <p class="font-bold text-lg"> {{ domaine.intitule }}</p>
+                <p class="text-sm"> {{ domaine.description }}</p>
+            </div>
+            
+            <div class="space-y-2">
+                <a href="{%url 'domaine:update_domaines' domaine.id %}" class="btn btn-secondary">
+                    <i class="fa fa-pencil fa-2x"></i>
+                </a>
+                <a href="{%url 'domaine:delete_domaines' domaine.id %}" class="btn btn-secondary">
+                    <i class="fa fa-trash fa-2x"></i>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{%block title %}
+{% if domaine %}
+Modifier domaine
+{% else %}
+Ajouter un domaine
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mb-4 flex justify-between items-center">
+    <h1 class="text-2x1 font-bold">
+        {% if domaine %}
+        Modifier le domaine
+        {% else %}
+        Ajouter un domaine
+        {% endif %}
+    </h1>
+    <a href="{%url 'domaine:list_domaines' %}" class="btn btn-primary">
+        <i class="fa fa-document"></i>
+        Liste des domaines
+    </a>
+</div>
+
+<form method="POST" action="{% if domaine %}{% url 'domaine:update_domaines' domaine.id %}{% else %}{% url 'domaine:add_domaines' %}{% endif %}" class="space-y-4">
+
+    {% csrf_token %}
+    {{ form.intitule }}
+    {{ form.description }}
+    <div class="flex justify-end">
+        <button type="submit" class="btn btn-primary ">
+            {% if domaine %}
+            Mettre à jour
+            {% else %}
+            Enregistrer
+            {% endif %}
+        </button>
+    </div>
+
+</form>
+{% endblock %}

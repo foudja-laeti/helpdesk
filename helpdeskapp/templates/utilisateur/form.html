@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if utilisateur %}
+Modifier utilisateur
+{% else %}
+Ajouter un utilisateur
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mb-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+        {% if utilisateur %}
+        Modifier l'utilisateur
+        {% else %}
+        Ajouter un utilisateur
+        {% endif %}
+    </h1>
+    <a href="{% url 'utilisateur:list_utilisateurs' %}" class="btn btn-primary">
+        <i class="fa fa-users"></i>
+        Liste des utilisateurs
+    </a>
+</div>
+
+<form method="POST" action="{% if utilisateur %}{% url 'utilisateur:update_utilisateur' utilisateur.id %}{% else %}{% url 'utilisateur:add_utilisateur' %}{% endif %}" class="space-y-4">
+    {% csrf_token %}
+    {{ form.nom }}
+    {{ form.prenom }}
+    {{ form.telephone }}
+    {{ form.adresse }}
+    {{ form.email }}
+    {{ form.password }}
+    {{ form.role }}
+
+    <div class="flex justify-end">
+        <button type="submit" class="btn btn-primary">
+            {% if utilisateur %}
+            Mettre à jour
+            {% else %}
+            Enregistrer
+            {% endif %}
+        </button>
+    </div>
+</form>
+{% endblock %}

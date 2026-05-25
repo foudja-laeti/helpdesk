@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Application{% endblock %}</title>
+    
+    <!-- Tailwind CSS CDN pour le style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js pour les messages auto-effaçables et le menu déroulant (NÉCESSAIRE) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
+
+    <!-- Font Awesome pour les icônes (comme fa-user-circle) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Styles de base pour simuler un thème simple */
+        .bg-base-100 { background-color: #ffffff; }
+        .btn-ghost:hover { background-color: rgba(0, 0, 0, 0.05); }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    
+    <!-- ========================================================================= -->
+    <!-- 🚨 BLOC DE MESSAGES DE DJANGO INTÉGRÉ (Consommation des messages) 🚨 -->
+    <!-- Ce bloc est CRUCIAL. Il itère sur la liste des messages de la session, ce qui a pour effet de les CONSOMMER (effacer) -->
+    <div class="fixed top-4 right-4 z-50 space-y-2 max-w-sm w-full">
+        {% for message in messages %}
+        <div 
+            class="p-4 rounded-lg shadow-xl text-sm font-medium transition duration-300 transform translate-x-0 cursor-pointer"
+            role="alert"
+            x-data="{ show: true }"
+            x-init="setTimeout(() => { show = false }, 5000)"
+            x-show="show"
+            x-on:click="show = false"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            {% if message.tags %}
+                {% if 'success' in message.tags %}
+                    style="background-color: #10B981; color: white;"
+                {% elif 'error' in message.tags %}
+                    style="background-color: #EF4444; color: white;"
+                {% elif 'warning' in message.tags %}
+                    style="background-color: #F59E0B; color: black;"
+                {% else %}
+                    style="background-color: #3B82F6; color: white;"
+                {% endif %}
+            {% else %}
+                style="background-color: #3B82F6; color: white;"
+            {% endif %}
+        >
+            <div class="flex items-center">
+                <div class="mr-2">
+                    {% if 'success' in message.tags %}
+                        <i class="fas fa-check-circle w-5 h-5"></i>
+                    {% elif 'error' in message.tags %}
+                        <i class="fas fa-times-circle w-5 h-5"></i>
+                    {% else %}
+                        <i class="fas fa-info-circle w-5 h-5"></i>
+                    {% endif %}
+                </div>
+                <div class="flex-grow">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- ========================================================================= -->
+
+    <!-- Votre Navbar (mise à jour pour un meilleur affichage Tailwind) -->
+    <div class="shadow-md bg-base-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <div class="flex-1">
+                <a href="{% url 'home' %}" class="text-xl font-bold text-gray-800 hover:text-indigo-600 transition duration-150">
+                    Mon Application
+                </a>
+            </div>
+            <div class="flex-none">
+                {% if request.session.utilisateur_nom %}
+                    <!-- Utilisation de Alpine.js pour gérer le menu déroulant -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" class="flex items-center text-gray-600 hover:text-indigo-600 p-2 rounded-lg transition duration-150 focus:outline-none">
+                            <i class="fas fa-user-circle mr-2 text-xl"></i>
+                            <span class="font-medium">{{ request.session.utilisateur_nom }}</span>
+                            <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div x-show="open" @click.away="open = false" 
+                             class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 origin-top-right"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95">
+                            <div class="py-1">
+                                <a href="{% url 'utilisateur:list_utilisateurs' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Utilisateurs</a>
+                                <a href="{% url 'demande:list_demandes' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Demandes</a>
+                                <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-100 border-t mt-1">Déconnexion</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu principal de l'application -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        {% block content %}
+            <!-- Le contenu des templates enfants sera inséré ici -->
+        {% endblock content %}
+    </main>
+
+</body>
+</html>

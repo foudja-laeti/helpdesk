@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}
+Liste des demandes
+{% endblock %}
+
+{% block content %}
+<style>
+    .weather-mini {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .weather-icon-mini {
+        width: 40px;
+        height: 40px;
+        filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
+    }
+    
+    .temp-display {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #60a5fa;
+    }
+    
+    .city-name {
+        font-size: 0.75rem;
+        color: #94a3b8;
+    }
+</style>
+
+<div class="w-full bg-base-200 p-6">
+    <div class="mb-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-white mb-1">Liste des demandes</h1>
+            <p class="text-gray-400 text-sm">
+                <i class="fa fa-ticket-alt mr-1"></i>
+                {{ demandes_avec_meteo|length }} demande{{ demandes_avec_meteo|length|pluralize }}
+            </p>
+        </div>
+        <a href="{% url 'demande:add_demande' %}" class="btn btn-primary">
+            <i class="fa fa-plus-circle mr-2"></i>
+            Ajouter une demande
+        </a>
+    </div> 
+
+    <div class="space-y-4 w-full">
+        {% for item in demandes_avec_meteo %}
+        <div class="p-5 bg-base-100 rounded-xl w-full shadow-lg hover:shadow-xl transition-shadow border border-gray-700/50">
+            <div class="flex justify-between items-start gap-4">
+                
+                <!-- Informations principales -->
+                <div class="flex-1 space-y-3">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <p class="font-bold text-xl text-white mb-1">{{ item.demande.intitule }}</p>
+                            <p class="text-sm text-gray-400">
+                                <i class="fa fa-user mr-1"></i>
+                                Client : <span class="text-white">{{ item.demande.client.nom }} {{ item.demande.client.prenom }}</span>
+                            </p>
+                        </div>
+                        
+                        <!-- Statut Badge -->
+                        <div>
+                            {% if item.demande.statut == 'en attente' %}
+                                <span class="badge badge-warning gap-1">
+                                    <i class="fa fa-clock"></i> En attente
+                                </span>
+                            {% elif item.demande.statut == 'en cours' %}
+                                <span class="badge badge-info gap-1">
+                                    <i class="fa fa-spinner"></i> En cours
+                                </span>
+                            {% elif item.demande.statut == 'terminée' %}
+                                <span class="badge badge-success gap-1">
+                                    <i class="fa fa-check-circle"></i> Terminée
+                                </span>
+                            {% else %}
+                                <span class="badge badge-ghost">{{ item.demande.statut }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <p class="text-gray-400">
+                            <i class="fa fa-tools mr-1 text-blue-400"></i>
+                            Technicien : 
+                            <span class="text-white">
+                                {{ item.demande.technicien.nom|default:"Non assigné" }} 
+                                {{ item.demande.technicien.prenom|default:"" }}
+                            </span>
+                        </p>
+                        <p class="text-gray-400">
+                            <i class="fa fa-layer-group mr-1 text-purple-400"></i>
+                            Domaine : <span class="text-white">{{ item.demande.domaine.intitule }}</span>
+                        </p>
+                        <p class="text-gray-400">
+                            <i class="fa fa-calendar mr-1 text-green-400"></i>
+                            Date : <span class="text-white">{{ item.demande.datedemande|date:"d/m/Y à H:i" }}</span>
+                        </p>
+                        
+                        <!-- Affichage de l'adresse -->
+                        {% if item.demande.adresse %}
+                        <p class="text-gray-400">
+                            <i class="fa fa-map-marker-alt mr-1 text-red-400"></i>
+                            Adresse : <span class="text-white">{{ item.demande.adresse }}</span>
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Carte météo mini -->
+                {% if item.meteo.success %}
+                <div class="weather-mini">
+                    <img src="http://openweathermap.org/img/wn/{{ item.meteo.icon }}.png" 
+                         alt="{{ item.meteo.description }}" 
+                         class="weather-icon-mini">
+                    <div>
+                        <div class="temp-display">{{ item.meteo.temperature }}°C</div>
+                        <div class="city-name">
+                            <i class="fa fa-map-marker-alt mr-1"></i>
+                            {{ item.ville }}
+                        </div>
+                        <div class="text-xs text-gray-400">{{ item.meteo.description }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Boutons d'action -->
+                <div class="flex flex-col gap-2">
+                    <a href="{% url 'demande:detail_demande' item.demande.id %}" 
+                       class="btn btn-info btn-sm" title="Détails">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                    <a href="{% url 'demande:update_demande' item.demande.id %}" 
+                       class="btn btn-secondary btn-sm" title="Modifier">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <form action="{% url 'demande:delete_demande' item.demande.id %}" 
+                          method="POST" 
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette demande ?');" 
+                          class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-error btn-sm" title="Supprimer">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center py-12 bg-base-100 rounded-xl">
+            <i class="fa fa-inbox text-6xl text-gray-600 mb-4"></i>
+            <p class="text-gray-400 text-lg">Aucune demande trouvée.</p>
+            <a href="{% url 'demande:add_demande' %}" class="btn btn-primary mt-4">
+                <i class="fa fa-plus-circle mr-2"></i>
+                Créer la première demande
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
