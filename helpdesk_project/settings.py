@@ -1,3 +1,4 @@
+import os
 """
 Django settings for helpdesk_project project.
 
@@ -21,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-33xsx%ffw#14=6-#@*32mcv8_*oyvk1pl#-$ri9v&62cjn)#2+'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-only')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -127,7 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Config de la journalisation
 
-import os
 
 # Création du dossier des logs
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
@@ -137,7 +138,7 @@ if not os.path.exists(LOGS_DIR):
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    
+
     # Définition des formatteurs
     'formatters': {
         'verbose': {
@@ -154,7 +155,7 @@ LOGGING = {
             'datefmt': '%y-%m-%d %H:%M:%S',
         },
     },
-    
+
     # Définition des gestionnaires
     'handlers': {
         # Fichier pour tous les logs
@@ -171,7 +172,7 @@ LOGGING = {
             'formatter': 'simple',
         },
     },
-    
+
     # Définition des loggers
     'loggers': {
         #    'django': {
@@ -191,11 +192,10 @@ LOGGING = {
         #     'propagate': True,
         # },
     },
-    
+
     # logger racine pour capturer tous les logs
     # 'root': {
     #     'handlers': ['file', 'console'],
     #     'level': 'DEBUG',
     # }
 }  # ← FERMETURE DU DICTIONNAIRE LOGGING
-
