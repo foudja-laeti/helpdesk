@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import Utilisateur, Demande, Domaine
 
 admin.site.register(Utilisateur),
 admin.site.register(Demande),

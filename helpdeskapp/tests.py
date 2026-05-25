@@ -1,7 +1,7 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.contrib.auth.hashers import make_password
 from helpdeskapp.models import Utilisateur, Domaine, Demande
-from helpdeskapp.forms import DomaineForm, UtilisateurForm, DemandeForm, LoginForm
+from helpdeskapp.forms import DomaineForm, UtilisateurForm, LoginForm
 from helpdeskapp.views import extract_city_from_address, get_weather_data
 
 
@@ -97,7 +97,10 @@ class DemandeModelTest(TestCase):
 class DomaineFormTest(TestCase):
 
     def test_form_valide(self):
-        form = DomaineForm(data={"intitule": "Logiciel", "description": "Bugs logiciels"})
+        form = DomaineForm(
+            data={
+                "intitule": "Logiciel",
+                "description": "Bugs logiciels"})
         self.assertTrue(form.is_valid())
 
     def test_form_invalide_champs_vides(self):
@@ -131,7 +134,10 @@ class UtilisateurFormTest(TestCase):
 class LoginFormTest(TestCase):
 
     def test_form_valide(self):
-        form = LoginForm(data={"email": "user@test.com", "password": "pass123"})
+        form = LoginForm(
+            data={
+                "email": "user@test.com",
+                "password": "pass123"})
         self.assertTrue(form.is_valid())
 
     def test_form_invalide_sans_email(self):
@@ -156,7 +162,8 @@ class ExtractCityTest(TestCase):
         self.assertEqual(extract_city_from_address(None), "Douala")
 
     def test_adresse_yaoundé_avec_quartier(self):
-        self.assertEqual(extract_city_from_address("Yaoundé, Bastos"), "Yaoundé")
+        self.assertEqual(extract_city_from_address(
+            "Yaoundé, Bastos"), "Yaoundé")
 
 
 class GetWeatherDataTest(TestCase):
