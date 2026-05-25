@@ -35,6 +35,3 @@ htmlcov/
 .vscode/
 .idea/
 
-# Docker
-Dockerfile
-.dockerignore

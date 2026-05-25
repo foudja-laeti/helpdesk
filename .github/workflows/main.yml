@@ -57,34 +57,34 @@ jobs:
           name: coverage-report
           path: coverage.xml
 
-  # ─────────────────────────────────────────────
-  # STAGE 2 : Code Quality – SonarQube (désactivé)
-  # À réactiver quand le serveur Edge sera configuré
-  # ─────────────────────────────────────────────
-  # sonarqube:
-  #   name: "Stage 2 – Code Quality (SonarQube)"
-  #   runs-on: ubuntu-latest
-  #   needs: lint-and-test
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-  #     - uses: actions/download-artifact@v4
-  #       with:
-  #         name: coverage-report
-  #     - uses: SonarSource/sonarqube-scan-action@master
-  #       env:
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-  #     - uses: SonarSource/sonarqube-quality-gate-action@master
-  #       timeout-minutes: 5
-  #       env:
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  ─────────────────────────────────────────────
+  STAGE 2 : Code Quality – SonarQube (désactivé)
+  À réactiver quand le serveur Edge sera configuré
+  ─────────────────────────────────────────────
+  sonarqube:
+    name: "Stage 2 – Code Quality (SonarQube)"
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+      - uses: SonarSource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - uses: SonarSource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-  # ─────────────────────────────────────────────
-  # STAGE 3 : Build & Push Docker Hub
-  # ─────────────────────────────────────────────
+  ─────────────────────────────────────────────
+  STAGE 3 : Build & Push Docker Hub
+  ─────────────────────────────────────────────
   build-and-push:
     name: "Stage 3 – Build & Push Docker Hub"
     runs-on: ubuntu-latest
