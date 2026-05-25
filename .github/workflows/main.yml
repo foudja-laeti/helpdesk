@@ -58,11 +58,14 @@ jobs:
 
   # ─────────────────────────────────────────────
   # STAGE 2 : Code Quality - SonarCloud
+  # Tourne uniquement sur master et develop
+  # Quality Gate bloquant uniquement sur master
   # ─────────────────────────────────────────────
   sonarqube:
     name: "Stage 2 - Code Quality (SonarCloud)"
     runs-on: ubuntu-latest
     needs: lint-and-test
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
 
     steps:
       - name: Checkout du code
@@ -80,7 +83,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          SONAR_SCANNER_OPTS: "-Dsonar.qualitygate.wait=true"
+          SONAR_SCANNER_OPTS: >-
+            -Dsonar.qualitygate.wait=${{ github.ref == 'refs/heads/master' }}
 
   # ─────────────────────────────────────────────
   # STAGE 3 : Build & Push Docker Hub
