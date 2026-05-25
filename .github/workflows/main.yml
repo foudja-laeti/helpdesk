@@ -37,10 +37,12 @@ jobs:
           flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Lancement des tests Django avec couverture
+        
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: "False"
           OPENWEATHER_API_KEY: "fake-key-for-tests"
+          DJANGO_SETTINGS_MODULE: helpdesk_project.settings
         run: |
           pytest helpdeskapp/tests.py \
             --cov=helpdeskapp \
